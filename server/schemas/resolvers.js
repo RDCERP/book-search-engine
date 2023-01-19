@@ -8,7 +8,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('savedBooks');
+                    // .populate('savedBooks');
                 //   .populate('thoughts')
                 //   .populate('friends');
 
@@ -48,7 +48,7 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: {bookId: args.bookId} } },
+                    { $addToSet: { savedBooks: args.newBook } },
                     { new: true }
                 );
 
