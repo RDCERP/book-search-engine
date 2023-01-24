@@ -58,10 +58,11 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         removeBook: async (parent, { bookId }, context) => {
+            console.log("here")
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId: args.bookId } } },
+                    { $pull: { savedBooks: { bookId:bookId } } },
                     { new: true}
                 );
 
